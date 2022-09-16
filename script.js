@@ -1,10 +1,8 @@
+//Submitting Movies
 let form = document.getElementById("addForm");
-let itemList = document.getElementById("items");
 
-//Submit
 form.addEventListener("submit", addMovie);
 
-//Adding Movies
 function addMovie(e) {
   e.preventDefault();
 
@@ -14,10 +12,10 @@ function addMovie(e) {
   //Create new list
   let li = document.createElement("li");
 
-  //Setting things to the list
+  //Setting attributes to the list
   //class
   li.className = "list-group-item listStyle";
-  //   console.log(li);
+  //   console.log(movie added);
   //text
   li.appendChild(document.createTextNode(newItem));
 
@@ -27,13 +25,32 @@ function addMovie(e) {
   //Create delete button
   let button = document.createElement("button");
 
-  //Setting things to the button
+  //Setting attributes to the button
   //class
   button.className = "btn btn-danger btn-sm float-right delete";
-  // console.log(button);
+  // console.log(button added);
   //text
   button.appendChild(document.createTextNode("x"));
 
   //Appending the button into the li
   li.appendChild(button);
+}
+
+//Removing Movies
+let itemList = document.getElementById("items");
+
+itemList.addEventListener("click", removeMovie);
+
+function removeMovie(e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains("delete")) {
+    // console.log("movie removed");
+
+    //removing
+    if (confirm("Do you want to remove the Movie?")) {
+      let li = e.target.parentElement;
+      itemList.removeChild(li);
+    }
+  }
 }
