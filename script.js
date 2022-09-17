@@ -54,3 +54,29 @@ function removeMovie(e) {
     }
   }
 }
+
+//Filtering Movies
+let filter = document.getElementById("filter");
+
+filter.addEventListener("keyup", filterMovies);
+
+function filterMovies(e) {
+  //converting to lowerCase
+  let letters = e.target.value.toLowerCase();
+  // console.log(letters);
+
+  //Getting all list items
+  let items = itemList.getElementsByTagName("li");
+  // console.log(items);
+  //converting HTML collection to an Array
+  Array.from(items).forEach((item) => {
+    let itemName = item.firstChild.textContent;
+    // console.log(itemName);
+    //Searching movies
+    if (itemName.toLowerCase().indexOf(letters) != -1) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
