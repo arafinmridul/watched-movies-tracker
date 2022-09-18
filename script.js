@@ -69,12 +69,14 @@ function filterMovies(e) {
   let items = itemList.getElementsByTagName("li");
   // console.log(items);
   //converting HTML collection to an Array
-  Array.from(items).forEach((item) => {
+  itemsArray = Array.from(items);
+  //Looping through the Array
+  itemsArray.forEach((item) => {
     let itemName = item.firstChild.textContent;
     // console.log(itemName);
     //Searching movies
     if (itemName.toLowerCase().indexOf(letters) != -1) {
-      item.style.display = "block";
+      item.style.display = "flex";
     } else {
       item.style.display = "none";
     }
