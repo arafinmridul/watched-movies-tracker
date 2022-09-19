@@ -42,7 +42,7 @@ function addMovie(e) {
   arr.push(newItem);
   let arrString = JSON.stringify(arr);
   localStorage.setItem("movies", arrString);
-  console.log(arrString);
+  // console.log(arrString);
 }
 
 let moviesArr = JSON.parse(localStorage.getItem("movies"));
@@ -104,16 +104,3 @@ function filterMovies(e) {
     }
   });
 }
-
-//Adding LocalStorage
-// let movies = itemList.getElementsByTagName("li");
-// // console.log(movies);
-// let moviesArray = Array.from(movies);
-// // console.log(moviesArray);
-// localStorage.setItem("movies", itemList.innerText);
-// let myMovies = localStorage.getItem("movies");
-// console.log(myMovies);
-// moviesArray.forEach((movie) => {
-//   let movieName = movie.textContent;
-//   localStorage.setItem("movies", movieName);
-// });
