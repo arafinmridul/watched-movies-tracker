@@ -3,6 +3,8 @@ let form = document.getElementById("addForm");
 
 form.addEventListener("submit", addMovie);
 
+let arr = JSON.parse(localStorage.getItem("movies"));
+
 function addMovie(e) {
   e.preventDefault();
 
@@ -15,7 +17,7 @@ function addMovie(e) {
   //Setting attributes to the list
   //class
   li.className = "list-group-item listStyle";
-  //   console.log(movie added);
+  //   console.log(li);
   //text
   li.appendChild(document.createTextNode(newItem));
 
@@ -28,11 +30,31 @@ function addMovie(e) {
   //Setting attributes to the button
   //class
   button.className = "btn btn-danger btn-sm float-right delete";
-  // console.log(button added);
+  // console.log(button);
   //text
   button.appendChild(document.createTextNode("x"));
 
   //Appending the button into the li
+  li.appendChild(button);
+  // console.log(li);
+
+  //Adding LocalStorage
+  arr.push(newItem);
+  let arrString = JSON.stringify(arr);
+  localStorage.setItem("movies", arrString);
+  console.log(arrString);
+}
+
+let moviesArr = JSON.parse(localStorage.getItem("movies"));
+for (i = 0; i < moviesArr.length; i++) {
+  let itemList = document.getElementById("items");
+  let li = document.createElement("li");
+  li.className = "list-group-item listStyle";
+  li.appendChild(document.createTextNode(moviesArr[i]));
+  itemList.appendChild(li);
+  let button = document.createElement("button");
+  button.className = "btn btn-danger btn-sm float-right delete";
+  button.appendChild(document.createTextNode("x"));
   li.appendChild(button);
 }
 
@@ -82,3 +104,16 @@ function filterMovies(e) {
     }
   });
 }
+
+//Adding LocalStorage
+// let movies = itemList.getElementsByTagName("li");
+// // console.log(movies);
+// let moviesArray = Array.from(movies);
+// // console.log(moviesArray);
+// localStorage.setItem("movies", itemList.innerText);
+// let myMovies = localStorage.getItem("movies");
+// console.log(myMovies);
+// moviesArray.forEach((movie) => {
+//   let movieName = movie.textContent;
+//   localStorage.setItem("movies", movieName);
+// });
